@@ -1,0 +1,37 @@
+{
+  "name": "@optro/react-ui",
+  "description": "Optro Power-Up Marketplace UI Components",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.12.16",
+    "@babel/runtime": "^7.12.13",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-typescript": "^8.2.0",
+    "@types/react": "^16.8.25",
+    "@types/react-dom": "^16.8.5",
+    "node-sass": "^5.0.0",
+    "path": "^0.12.7",
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6",
+    "rollup": "^2.39.0",
+    "rollup-plugin-scss": "^2.6.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.5"
+  }
+}
