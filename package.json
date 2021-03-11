@@ -7,7 +7,7 @@
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "license": "Commercial (Optro)",
   "scripts": {
     "build": "rollup -c",
