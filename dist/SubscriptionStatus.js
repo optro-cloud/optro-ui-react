@@ -2,7 +2,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
 
-var localization = {
+const localization = {
     en: {
         messageFree: "You're on the Free Plan.",
         messagePro: "You're on the Pro Plan.",
@@ -30,11 +30,11 @@ var localization = {
 };
 
 function SubscriptionStatus(props) {
-    var locale = props.locale
+    const locale = props.locale
         ? props.locale
         : "en";
-    var proHref = props.powerupId
-        ? "https://www.optro.cloud/app/" + props.powerupId
+    const proHref = props.powerupId
+        ? `https://www.optro.cloud/app/${props.powerupId}`
         : "https://www.optro.cloud";
     if (props.isPro) {
         return (React.createElement("div", { className: "license-display license-display-pro" },
