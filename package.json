@@ -1,7 +1,14 @@
 {
   "name": "@optro/ui-react",
   "description": "Optro Power-Up Marketplace UI Components",
-  "license": "MIT",
+  "homepage": "https://github.com/optro-cloud/optro-ui-react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/optro-cloud/optro-ui-react.git"
+  },
+  "website": "https://www.optro.cloud",
+  "version": "0.5.0",
+  "license": "Commercial (Optro)",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w"
