@@ -1,4 +1,6 @@
 import * as React from "react";
+import {Trello} from "./trello";
+import PowerUp = Trello.PowerUp;
 
 export type LocaleKey = "en" | "fr" | "de" | "es";
 
@@ -16,7 +18,15 @@ export interface LicenseContext {
 export interface LicenseProviderProps {
     apiKey: string;
     powerupId: string;
-    children: React.ReactNode;
+    LicenseType?: LicenseType;
+    t?: PowerUp.IFrame;
+    optroClient: any;
+    children?: React.ReactNode;
+}
+
+export interface TrelloProviderProps {
+    t: PowerUp.IFrame;
+    children?: React.ReactNode;
 }
 
 export interface LicenseConditionalProps {
