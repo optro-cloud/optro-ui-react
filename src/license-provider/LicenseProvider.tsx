@@ -5,7 +5,6 @@ import { OptroLicenseResponse } from '@optro/api-client/dist/types/types';
 import {useContext, useEffect, useState} from "react";
 import {TrelloContext} from "../trello-provider/TrelloProvider";
 import {Trello} from "../types/trello";
-import PowerUp = Trello.PowerUp;
 
 const defaultContext: LicenseContext = {
     loading: true,
@@ -39,7 +38,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
     }
 
     useEffect(() => {
-        const t: PowerUp.IFrame | undefined = props.t ?? tContext;
+        const t: Trello.PowerUp.IFrame | undefined = props.t ?? tContext;
         if(t){
             let newContext = {...context};
             if (props.LicenseType == LicenseTypeUser) {

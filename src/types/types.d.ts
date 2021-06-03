@@ -20,20 +20,20 @@ export interface LicenseProviderProps {
     powerupId: string;
     LicenseType?: LicenseType;
     t?: PowerUp.IFrame;
-    optroClient: any;
-    children?: React.ReactNode;
+    optroClient?: any;
+    children?: React.ReactNode | React.ReactElement;
 }
 
 export interface TrelloProviderProps {
     t: PowerUp.IFrame;
-    children?: React.ReactNode;
+    children?: React.ReactNode | React.ReactElement;
 }
 
 export interface LicenseConditionalProps {
-    loading?: React.ReactNode;
-    licensed?: React.ReactNode;
-    unlicensed?: React.ReactNode;
-    children?: React.ReactNode;
+    loading?: React.ReactNode | React.ReactElement;
+    licensed?: React.ReactNode | React.ReactElement;
+    unlicensed?: React.ReactNode | React.ReactElement;
+    children?: React.ReactNode | React.ReactElement;
 }
 
 
