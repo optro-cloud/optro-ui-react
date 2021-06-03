@@ -39,7 +39,7 @@
     "typescript": "^4.1.5"
   },
   "dependencies": {
-    "@optro/api-client": "^0.9.8"
+    "@optro/api-client": "^1.0.1"
   }
 }
 
