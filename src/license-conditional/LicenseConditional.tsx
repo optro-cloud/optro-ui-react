@@ -1,3 +1,4 @@
+import React from 'react';
 import useLicense from "../use-license/useLicense";
 import { LicenseConditionalProps } from "../types/types";
 
@@ -24,7 +25,7 @@ const LicenseConditional = (props: LicenseConditionalProps) => {
         return props.licensed;
     }
 
-    return null;
+    return <></>;
 };
 
 export default LicenseConditional;
