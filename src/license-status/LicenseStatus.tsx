@@ -2,14 +2,15 @@ import * as React from "react";
 import {LocaleKey, SubscriptionStatusProps} from "../types/types";
 import {localization} from "../localization/i18n";
 import './styles.scss';
+import {OptroBaseUrl} from "../common/globals";
 
-export function SubscriptionStatus(props: SubscriptionStatusProps ) {
+const LicenseStatus = (props: SubscriptionStatusProps ) => {
     const locale: LocaleKey = props.locale
         ? props.locale
         : "en";
     const proHref: string = props.powerupId
-        ? `https://www.optro.cloud/app/${props.powerupId}`
-        : "https://www.optro.cloud";
+        ? `${OptroBaseUrl}/app/${props.powerupId}`
+        : OptroBaseUrl;
 
     if (props.isPro) {
         return (
@@ -35,7 +36,7 @@ export function SubscriptionStatus(props: SubscriptionStatusProps ) {
                 </span>
                 <a
                     className="license-display-link"
-                    href="https://www.optro.cloud/account"
+                    href={`${OptroBaseUrl}/account`}
                     target="_blank"
                 >
                     {localization[locale].linkTextPro}
@@ -44,3 +45,5 @@ export function SubscriptionStatus(props: SubscriptionStatusProps ) {
         );
     }
 }
+
+export default LicenseStatus;
