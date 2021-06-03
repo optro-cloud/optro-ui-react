@@ -1,6 +1,7 @@
 import * as React from "react";
 import {LocaleKey, SubscriptionStatusProps} from "../types/types";
 import {localization} from "../localization/i18n";
+import './styles.scss';
 
 export function SubscriptionStatus(props: SubscriptionStatusProps ) {
     const locale: LocaleKey = props.locale
