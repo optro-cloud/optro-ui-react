@@ -17,13 +17,13 @@ yarn add @optro/api-client
 2. Import it into your React component
 
 ```
-import {SubscriptionStatus} from "@optro/ui-react/src/subscription-status/SubscriptionStatus";
+import {LicenseStatus} from "@optro/ui-react/src/subscription-status/LicenseStatus";
 ```
 
 3. Pass in the required parameters in your JSX
 
 ```
-<SubscriptionStatus
+<LicenseStatus
     isPro={isTheUserLicensed}
     onGetPro={functionToCallOnUpsell}
     powerupId={yourPowerupId}
