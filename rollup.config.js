@@ -6,7 +6,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
 export default {
-    input: [path.join(__dirname, "src", "license-status", "LicenseStatus.tsx"),
+    input: [
+        path.join(__dirname, "src", "index.ts"),
+        path.join(__dirname, "src", "license-status", "LicenseStatus.tsx"),
         path.join(__dirname, "src", "license-provider", "LicenseProvider.tsx"),
         path.join(__dirname, "src", "license-conditional", "LicenseConditional.tsx"),
         path.join(__dirname, "src", "use-license", "useLicense.ts"),
