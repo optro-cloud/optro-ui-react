@@ -124,15 +124,15 @@ TODO
 />
 ```
 
-# Contributing
+## Contributing
 
 We welcome contributions to the source code - just raise a Pull Request!
 
-# License
+## License
 
 This library, excluding styles is provided under the MIT License.
 
-### About Optro
+## About Optro
 
 [Optro Market](https://www.optro.cloud) is the best place to discover new Pro Power-ups for Trello.
 
