@@ -2,9 +2,7 @@ import * as React from "react";
 import {TrelloProviderProps} from "../types/types";
 import {useEffect, useState} from "react";
 import {Trello} from "../types/trello";
-import PowerUp = Trello.PowerUp;
-
-export const TrelloContext = React.createContext<PowerUp.IFrame | undefined>(undefined);
+export const TrelloContext = React.createContext<Trello.PowerUp.IFrame | undefined>(undefined);
 
 const TrelloProvider = (props: TrelloProviderProps) => {
 
