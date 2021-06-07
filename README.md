@@ -1,7 +1,6 @@
 # Optro UI for Trello
 ![optro-sdk](https://img.shields.io/badge/Optro-SDK-blue)
 ![npm](https://img.shields.io/npm/v/@optro/ui-react)
-![npm bundle size](https://img.shields.io/bundlephobia/min/@optro/ui-react)
 [![Release Package](https://github.com/optro-cloud/optro-ui-react/actions/workflows/main.yml/badge.svg)](https://github.com/optro-cloud/optro-ui-react/actions/workflows/main.yml)
 
 The Optro UI library makes creating new Trello Power-Ups with React easier than ever, with useful hooks, components and types such as:
