@@ -123,7 +123,7 @@ Using the [LicenseConditional](https://github.com/optro-cloud/optro-ui-react/blo
 
 This component helps you indicate what level of subscription a customer has and provide an easy way for users to start a subscription, or manage their existing subscription.
 
-[LicenseStatus](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-status/LicenseStatus.tsx) - show on screen the status of the current board or member with a link to subscribe or manage their existing subscription
+[LicenseStatus](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-status/LicenseStatus.tsx) shows on screen the status of the current board or member license with a link to subscribe or manage their existing subscription:
 
 ```jsx
 <LicenseStatus
