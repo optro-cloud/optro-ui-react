@@ -146,7 +146,7 @@ This library, excluding branding is provided under the MIT License.
 
 [Optro](https://www.optro.cloud) is the best place to discover new Pro Power-ups for Trello.
 
-Using Optro you can build Power-Ups with best practice and monetization features baked right in!
+Using [Optro Vendor](https://vendor.optro.cloud), you can learn how to build Power-Ups with best practice and monetization features baked right in!
 
 Use the tools provided with Optro and generate revenue from your innovative Power-up ideas:
 * https://github.com/optro-cloud/create-trello-powerup
