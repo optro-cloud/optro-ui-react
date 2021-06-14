@@ -29,15 +29,14 @@ export default {
     plugins: [
         peerDepsExternal(),
         postcss({
-            extract: true,
+            extract: false,
             modules: true,
             use: ['sass'],
         }),
         resolve(),
         babel({ exclude: 'node_modules/**', babelHelpers: "bundled" }),
         commonjs(),
-        typescript(),
-
+        typescript()
     ],
     external: ['react', 'react-dom']
 }
