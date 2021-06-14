@@ -41,7 +41,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
         const t: Trello.PowerUp.IFrame | undefined = props.t ?? tContext;
         if(t){
             let newContext = {...context};
-            if (props.LicenseType == LicenseTypeUser) {
+            if (props.licenseType == LicenseTypeUser) {
                 newContext.licenseId= t.getContext().member;
                 props.optroClient.getMemberLicenseStatus(newContext.licenseId).then((result: OptroLicenseResponse ) => {
                     newContext = {...newContext , ...processResults(result)};
@@ -49,7 +49,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
                 }).catch(function(error: any) {
                     console.error(error);
                 });
-            } else if (props.LicenseType == LicenseTypeBoard) {
+            } else if (props.licenseType == LicenseTypeBoard) {
                 newContext.licenseId= t.getContext().board;
                 props.optroClient.getBoardLicenseStatus(newContext.licenseId).then((result: OptroLicenseResponse ) => {
                     newContext = {...newContext , ...processResults(result)};
