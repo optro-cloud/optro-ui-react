@@ -70,7 +70,7 @@ First of all, add the [LicenseProvider](https://github.com/optro-cloud/optro-ui-
 
 ```jsx
 import {LicenseProvider, TrelloProvider} from '@optro/ui-react';  
-import {OptroLicenseApi} from '@optro/api-client/dist';
+import {OptroLicenseApi} from '@optro/api-client';
 
 // Create a caching Optro License API client
 const optroClient = new OptroLicenseApi(
