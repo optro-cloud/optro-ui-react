@@ -1,9 +1,10 @@
-import scss from 'rollup-plugin-scss';
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from '@rollup/plugin-typescript';
 import * as path from "path";
 import babel from '@rollup/plugin-babel'
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from "rollup-plugin-postcss";
 
 export default {
     input: [
@@ -26,11 +27,17 @@ export default {
         }
     ],
     plugins: [
-        babel({ exclude: 'node_modules/**', babelHelpers: "bundled" }),
+        peerDepsExternal(),
+        postcss({
+            extract: true,
+            modules: true,
+            use: ['sass'],
+        }),
         resolve(),
-        scss(),
+        babel({ exclude: 'node_modules/**', babelHelpers: "bundled" }),
+        commonjs(),
         typescript(),
-        commonjs()
+
     ],
     external: ['react', 'react-dom']
 }
