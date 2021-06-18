@@ -9,7 +9,7 @@
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf dist",
