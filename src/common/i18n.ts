@@ -1,6 +1,6 @@
 import { LocaleMap } from '../types';
 
-const localization: LocaleMap = {
+export const localization: LocaleMap = {
   en: {
     messageFree: "You're on the Free Plan.",
     messagePro: "You're on the Pro Plan.",
@@ -27,4 +27,3 @@ const localization: LocaleMap = {
   },
 };
 
-export default localization;
