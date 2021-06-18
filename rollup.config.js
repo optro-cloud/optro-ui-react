@@ -3,6 +3,9 @@ import * as path from "path";
 import visualizer from 'rollup-plugin-visualizer';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import {getFiles} from "./scripts/utilities";
+import babel from "@rollup/plugin-babel";
+import scss from "rollup-plugin-scss";
 
 const extensions = ['.js', '.ts', '.jsx', '.tsx', '.scss'];
 
