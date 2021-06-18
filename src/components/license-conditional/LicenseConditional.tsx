@@ -1,6 +1,6 @@
 import React from 'react';
-import useLicense from "../use-license/useLicense";
-import { LicenseConditionalProps } from "../types/types";
+import useLicense from "../../hooks/useLicense";
+import { LicenseConditionalProps } from "../../types";
 
 const LicenseConditional = (props: LicenseConditionalProps) => {
     const licenseContext = useLicense();

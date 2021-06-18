@@ -1,10 +1,8 @@
-import * as React from "react";
-import {LicenseTypeBoard, LicenseTypeUser} from "../common/globals";
-import { LicenseContext, LicenseProviderProps } from "../types/types";
-import { OptroLicenseResponse } from '@optro/api-client';
-import {useContext, useEffect, useState} from "react";
-import {TrelloContext} from "../trello-provider/TrelloProvider";
-import {Trello} from "../types/trello";
+import React, {useContext, useEffect, useState} from "react";
+import {OptroLicenseResponse} from "@optro/api-client/dist/types";
+import {LicenseContext, LicenseProviderProps, Trello} from "../../types";
+import {LicenseTypeBoard, LicenseTypeUser} from "../../common";
+import {TrelloContext} from "../trello-provider";
 
 const defaultContext: LicenseContext = {
     loading: true,
@@ -26,7 +24,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
         licensed: false,
         expired: false,
         powerupId: props.powerupId,
-        licenseType: props.LicenseType ?? 'board',
+        licenseType: props.licenseType ?? 'board',
         licenseId: ''
     })
 

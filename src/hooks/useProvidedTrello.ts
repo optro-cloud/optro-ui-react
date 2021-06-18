@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {TrelloContext} from "../trello-provider/TrelloProvider";
+import {TrelloContext} from "../components";
 
 const useProvidedTrello = () => {
     return useContext(TrelloContext);

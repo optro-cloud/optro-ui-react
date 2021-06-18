@@ -4,28 +4,28 @@
  * Available under the Apache-2.0 License
  */
 declare global {
-    interface Window {
+    export interface Window {
         TrelloPowerUp: Trello.PowerUp;
         locale: string;
     }
 }
 
 export namespace Trello {
-    namespace Callback {
-        type CacheAction = 'run' | 'retain' | 'release';
-        type SerializeResult = (value: any, key?: string) => any
+    export namespace Callback {
+        export type CacheAction = 'run' | 'retain' | 'release';
+        export type SerializeResult = (value: any, key?: string) => any
 
-        type SerializeOutput = {
+        export type SerializeOutput = {
             _callback: string;
         }
 
-        interface CacheOptions {
+        export interface CacheOptions {
             action: CacheAction;
             options: any;
             callback: string;
         }
 
-        interface Cache {
+        export interface Cache {
             callback(t: PowerUp.IFrame, options: CacheOptions, serializeResult: SerializeResult): PromiseLike<any>;
             serialize(fx: (t: PowerUp.IFrame, args: any) => any): SerializeOutput;
             reset(): void;
@@ -43,21 +43,21 @@ export namespace Trello {
         util: PowerUp.Util;
     }
 
-    namespace PowerUp {
+    export namespace PowerUp {
         // INTERNAL TYPES
-        type ResourceDictionary = {
+        export type ResourceDictionary = {
             [key: string]: string;
         }
 
-        type OrganizationFields = keyof Organization;
-        type BoardFields = keyof Board;
-        type CardFields = keyof Card;
-        type ListFields = keyof List;
-        type MemberFields = keyof Member;
+        export type OrganizationFields = keyof Organization;
+        export type BoardFields = keyof Board;
+        export type CardFields = keyof Card;
+        export type ListFields = keyof List;
+        export type MemberFields = keyof Member;
 
         // USER-FACING TYPES
 
-        type CapabilityHandlers = {
+        export type CapabilityHandlers = {
             'attachment-sections'?: (t: PowerUp.IFrame, options: { entries: Attachment[]; }) => PromiseLike<(AttachmentSection | LazyAttachmentSection)[]> | AttachmentSection[];
             'attachment-thumbnail'?: (t: PowerUp.IFrame, options: AttachmentThumbnailOptions) => PromiseLike<AttachmentThumbnail> | AttachmentThumbnail;
             'board-buttons'?: (t: PowerUp.IFrame) => PromiseLike<(BoardButtonUrl | BoardButtonCallback)[]> | BoardButtonCallback[];
@@ -78,23 +78,23 @@ export namespace Trello {
             'show-authorization'?: (t: Trello.PowerUp.IFrame) => void;
         };
 
-        type Condition = 'admin' | 'always' | 'edit' | 'readonly' | 'signedIn' | 'signedOut';
+        export type Condition = 'admin' | 'always' | 'edit' | 'readonly' | 'signedIn' | 'signedOut';
 
-        type Model = 'board' | 'card' | 'organization';
-        type Scope = Model | 'member';
-        type Permissions = 'read' | 'write';
+        export type Model = 'board' | 'card' | 'organization';
+        export type Scope = Model | 'member';
+        export type Permissions = 'read' | 'write';
 
-        type Visibility = 'shared' | 'private';
+        export type Visibility = 'shared' | 'private';
 
-        interface CardFromUrlOptions {
+        export interface CardFromUrlOptions {
             url: string;
         }
 
-        interface FormatUrlOptions {
+        export interface FormatUrlOptions {
             url: string;
         }
 
-        interface FormatUrlResponse {
+        export interface FormatUrlResponse {
             icon: string;
             text: string;
             subtext: string;
@@ -106,26 +106,26 @@ export namespace Trello {
             thumbnail?: string; // Deprecated
         }
 
-        interface FormatUrlActions {
+        export interface FormatUrlActions {
             text: string;
             callback: (t: Trello.PowerUp.IFrame) => void;
         }
 
-        interface CardFromUrlResponse {
+        export interface CardFromUrlResponse {
             name: string;
             desc: string;
         }
 
-        interface PopupOptionsItem {
+        export interface PopupOptionsItem {
             text: string;
             callback?(t: any, options: any): PromiseLike<void>;
         }
 
-        interface AuthorizationStatusResponse {
+        export interface AuthorizationStatusResponse {
             authorized: boolean;
         }
 
-        interface AttachmentThumbnail {
+        export interface AttachmentThumbnail {
             title: string;
             image: {
                 url: string;
@@ -133,17 +133,17 @@ export namespace Trello {
             }
         }
 
-        interface AttachmentThumbnailOptions {
+        export interface AttachmentThumbnailOptions {
             url: string;
         }
 
-        interface PopupOptions {
+        export interface PopupOptions {
             title: string;
             items: PopupOptionsItem[];
             mouseEvent?: MouseEvent;
         }
 
-        interface PopupSearchOptions extends PopupOptions {
+        export interface PopupSearchOptions extends PopupOptions {
             search: {
                 count?: number;
                 placeholder?: string;
@@ -153,7 +153,7 @@ export namespace Trello {
             };
         }
 
-        interface PopupIframeOptions {
+        export interface PopupIframeOptions {
             callback?(t: PowerUp.IFrame, options: { locale: string }): void;
             title: string;
             url: string;
@@ -164,7 +164,7 @@ export namespace Trello {
             mouseEvent?: MouseEvent;
         }
 
-        interface PopupDateOptions {
+        export interface PopupDateOptions {
             type: 'date' | 'datetime';
             title: string;
             callback(t: PowerUp.IFrame, options: {
@@ -176,7 +176,7 @@ export namespace Trello {
             mouseEvent: MouseEvent;
         }
 
-        interface PopupConfirmOptions {
+        export interface PopupConfirmOptions {
             type: 'confirm';
             title: string;
             message: string;
@@ -186,12 +186,12 @@ export namespace Trello {
             mouseEvent: MouseEvent;
         }
 
-        interface PopupConfirmWithCancelOptions extends PopupConfirmOptions {
+        export interface PopupConfirmWithCancelOptions extends PopupConfirmOptions {
             cancelText: string;
             onCancel(t: PowerUp.IFrame, opts: any): PromiseLike<void>;
         }
 
-        interface HeaderAction {
+        export interface HeaderAction {
             icon: string;
             alt: string;
             callback(): void;
@@ -199,30 +199,30 @@ export namespace Trello {
             url?: string;
         }
 
-        type Colors = 'blue' | 'green' | 'orange' | 'red' | 'yellow' |
+        export type Colors = 'blue' | 'green' | 'orange' | 'red' | 'yellow' |
             'purple' | 'pink' | 'sky' | 'lime' | 'light-gray' | 'business-blue';
 
-        type AlertDisplay = 'info' | 'warning' | 'error' | 'success';
+        export type AlertDisplay = 'info' | 'warning' | 'error' | 'success';
 
         // INTERNAL INTERFACES
-        interface Localizer {
+        export interface Localizer {
             resourceDictionary: ResourceDictionary;
             localize(key: string, args: readonly string[]): string;
         }
 
-        interface Localization {
+        export interface Localization {
             defaultLocale: string;
             supportedLocales: string[];
             resourceUrl: string;
         }
 
-        interface LocalizerOptions {
+        export interface LocalizerOptions {
             localizer?: Localizer;
             loadLocalizer?(): PromiseLike<Localizer>;
             localization?: Localization;
         }
 
-        interface Util {
+        export interface Util {
             color: {
                 getHexString(): string;
                 namedColorStringToHex(): string;
@@ -248,7 +248,7 @@ export namespace Trello {
             relativeUrl(url: string): string;
         }
 
-        interface AnonymousHostHandlers {
+        export interface AnonymousHostHandlers {
             requestWithContext(command: string, options: any): PromiseLike<any>;
             getAll(): PromiseLike<any>;
             get(scope: Scope | string, visibility: Visibility, key?: string, defaultValue?: any): PromiseLike<any>;
@@ -271,7 +271,7 @@ export namespace Trello {
             organization(...fields: ['all'] | OrganizationFields[]): PromiseLike<Organization>;
         }
 
-        interface HostHandlers extends AnonymousHostHandlers {
+        export interface HostHandlers extends AnonymousHostHandlers {
             getContext(): Context;
             isMemberSignedIn(): boolean;
             memberCanWriteToModel(modelType: Model): boolean;
@@ -351,13 +351,13 @@ export namespace Trello {
             }): PromiseLike<void>;
         }
 
-        interface IFrameOptions extends LocalizerOptions {
+        export interface IFrameOptions extends LocalizerOptions {
             context?: string;
             secret?: string;
             helpfulStacks?: boolean;
         }
 
-        interface IFrame extends HostHandlers {
+        export interface IFrame extends HostHandlers {
             io: any | null;
             args: any[];
             secret?: string;
@@ -373,7 +373,7 @@ export namespace Trello {
             NotHandled: any;
         }
 
-        interface PluginOptions extends LocalizerOptions {
+        export interface PluginOptions extends LocalizerOptions {
             Sentry?: {
                 configureScope(callback: (scope: {
                     setTags(name: string, value: string): void;
@@ -391,7 +391,7 @@ export namespace Trello {
             helpfulStacks?: boolean;
         }
 
-        interface Plugin extends AnonymousHostHandlers {
+        export interface Plugin extends AnonymousHostHandlers {
             options: PluginOptions;
             connect(): any; // return an instance of PostMessageIO
             request(command: string, options: any): PromiseLike<any>; //  // return PostMessageIO.request, whatever that is
@@ -400,7 +400,7 @@ export namespace Trello {
         }
 
         // USER-FACING INTERFACES
-        interface BoardButtonBase {
+        export interface BoardButtonBase {
             icon: {
                 dark: string;
                 light: string;
@@ -409,16 +409,16 @@ export namespace Trello {
             condition?: Condition;
         }
 
-        interface BoardButtonCallback extends BoardButtonBase {
+        export interface BoardButtonCallback extends BoardButtonBase {
             callback: (t: Trello.PowerUp.IFrame) => PromiseLike<void>;
         }
 
-        interface BoardButtonUrl extends BoardButtonBase {
+        export interface BoardButtonUrl extends BoardButtonBase {
             url: string;
             target?: string;
         }
 
-        interface CardBackSection {
+        export interface CardBackSection {
             title: string;
             icon: string;
             content: {
@@ -428,40 +428,40 @@ export namespace Trello {
             };
         }
 
-        interface CardBadge {
+        export interface CardBadge {
             text?: string;
             icon?: string;
             color?: Colors;
             refresh?: number;
         }
 
-        interface CardBadgeDynamic {
+        export interface CardBadgeDynamic {
             dynamic(): CardBadge | Promise<CardBadge>;
         }
 
-        interface CardDetailBadge extends CardBadge {
+        export interface CardDetailBadge extends CardBadge {
             callback?(t: PowerUp.IFrame): void;
             url?: string;
             target?: string;
         }
 
-        interface CardDetailBadgeDynamic {
+        export interface CardDetailBadgeDynamic {
             dynamic(): CardDetailBadge | Promise<CardDetailBadge>;
         }
 
-        interface ListAction {
+        export interface ListAction {
             text: string;
             callback(t: PowerUp.IFrame): PromiseLike<void>;
         }
 
-        interface ListSorter {
+        export interface ListSorter {
             text: string;
             callback(t: PowerUp.IFrame, options: {
                 cards: Card[];
             }): PromiseLike<{ sortedIds: string[]}>;
         }
 
-        interface CardButton {
+        export interface CardButton {
             icon: string;
             text: string;
             condition?: Condition;
@@ -470,14 +470,14 @@ export namespace Trello {
             target?: string;
         }
 
-        interface AttachmentsByType {
+        export interface AttachmentsByType {
             [key: string]: {
                 board: number;
                 card: number;
             };
         }
 
-        interface Preview {
+        export interface Preview {
             bytes: number;
             height: number;
             scaled: boolean;
@@ -485,7 +485,7 @@ export namespace Trello {
             width: number;
         }
 
-        interface AttachmentSectionBase {
+        export interface AttachmentSectionBase {
             claimed: Attachment[];
             icon: string;
             content: {
@@ -495,16 +495,16 @@ export namespace Trello {
             };
         }
 
-        interface AttachmentSection extends AttachmentSectionBase {
+        export interface AttachmentSection extends AttachmentSectionBase {
             title: string;
         }
 
-        interface LazyAttachmentSection extends AttachmentSectionBase {
+        export interface LazyAttachmentSection extends AttachmentSectionBase {
             id: string;
             title(): string;
         }
 
-        interface Attachment {
+        export interface Attachment {
             date: string;
             edgeColor: string;
             id: string;
@@ -514,7 +514,7 @@ export namespace Trello {
             url: string;
         }
 
-        interface BadgesInfo {
+        export interface BadgesInfo {
             attachments: number;
             attachmentsByType: AttachmentsByType;
             checkItems: number;
@@ -530,34 +530,34 @@ export namespace Trello {
             votes: number;
         }
 
-        interface Coordinates {
+        export interface Coordinates {
             latitude: number;
             longitude: number;
         }
 
-        interface Label {
+        export interface Label {
             id: string;
             name: string;
             color: Colors;
         }
 
-        interface CustomField {
+        export interface CustomField {
             id: string;
             idCustomField: string;
             idValue?: string;
             value?: CustomFieldValue;
         }
 
-        interface CustomFieldValue {
+        export interface CustomFieldValue {
             checked?: string;
             date?: string;
             text?: string;
             number?: string;
         }
 
-        type MemberType = 'admin' | 'normal' | 'observer'
+        export type MemberType = 'admin' | 'normal' | 'observer'
 
-        interface Membership {
+        export interface Membership {
             deactivated: boolean;
             id: string;
             idMember: string;
@@ -565,12 +565,12 @@ export namespace Trello {
             unconfirmed: boolean;
         }
 
-        interface Organization {
+        export interface Organization {
             id: string;
             name: string;
         }
 
-        interface Board {
+        export interface Board {
             id: string;
             name: string;
             url: string; // https://trello.com/c/I5nAdteE/9-test
@@ -583,7 +583,7 @@ export namespace Trello {
             memberships: Membership[];
         }
 
-        interface Card {
+        export interface Card {
             address: string | null;
             attachments: Attachment[];
             badges: BadgesInfo;
@@ -607,13 +607,13 @@ export namespace Trello {
             url: string; // https://trello.com/c/I5nAdteE/9-test
         }
 
-        interface List {
+        export interface List {
             id: string;
             name: string;
             cards: Card[];
         }
 
-        interface Member {
+        export interface Member {
             id: string;
             fullName: string | null;
             username: string | null;
@@ -621,7 +621,7 @@ export namespace Trello {
             avatar: string | null;
         }
 
-        interface Context {
+        export interface Context {
             board: string;
             card?: string;
             command?: string;

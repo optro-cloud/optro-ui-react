@@ -1,8 +1,7 @@
-import * as React from "react";
-import {LocaleKey, SubscriptionStatusProps} from "../types/types";
-import {localization} from "../localization/i18n";
+import React from "react";
+import {localization, OptroBaseUrl} from "../../common";
+import {LocaleKey, SubscriptionStatusProps} from "../../types";
 import './styles.scss';
-import {OptroBaseUrl} from "../common/globals";
 
 const LicenseStatus = (props: SubscriptionStatusProps ) => {
     const locale: LocaleKey = props.locale

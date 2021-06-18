@@ -9,11 +9,15 @@
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "Commercial",
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "rollup -c",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "build:local": "npm run build && npm pack",
+    "build:publish": "npm run build && npm publish"
   },
   "peerDependencies": {
     "react": "^16.8.6",
@@ -31,17 +35,20 @@
     "@rollup/plugin-typescript": "^8.2.0",
     "@types/react": "^16.8.25",
     "@types/react-dom": "^16.8.5",
-    "node-sass": "^5.0.0",
+    "sass": "^1.35.1",
+    "node-sass": "^6.0.0",
     "path": "^0.12.7",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6",
     "rollup": "^2.39.0",
+    "rollup-plugin-dts": "^3.0.2",
     "rollup-plugin-scss": "^2.6.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-visualizer": "^5.5.0",
     "tslib": "^2.1.0",
     "typescript": "^4.1.5"
   },
   "dependencies": {
-    "@optro/api-client": "^1.0.1"
+    "@optro/api-client": "^1.0.3"
   }
 }
-

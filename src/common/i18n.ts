@@ -1,4 +1,4 @@
-import {LocaleMap} from "../types/types";
+import {LocaleMap} from "../types";
 
 export const localization: LocaleMap = {
     en: {

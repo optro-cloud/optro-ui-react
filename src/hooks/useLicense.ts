@@ -1,5 +1,5 @@
-import { ContextedLicense } from "../license-provider/LicenseProvider";
 import {useContext} from "react";
+import {ContextedLicense} from "../components";
 
 const useLicense = () => {
     return useContext(ContextedLicense);

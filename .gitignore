@@ -1,2 +1,12 @@
-/node_modules/
-/.idea/
+# General
+.vscode/
+node_modules/
+.idea/
+# Build outputs
+dist
+storybook-static
+*.tgz
+bundle-analysis.html
+
+# Dev files
+debug.log
