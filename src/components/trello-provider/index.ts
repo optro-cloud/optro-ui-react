@@ -1,4 +1,4 @@
-import TrelloProvider from "./TrelloProvider";
+import TrelloProvider from './TrelloProvider';
 
 export default TrelloProvider;
 export * from './TrelloProvider';

@@ -23,6 +23,7 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
+    "react/destructuring-assignment": 0,
     "import/extensions": [
       "error",
       "ignorePackages",

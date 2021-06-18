@@ -1,9 +1,9 @@
-import React from "react";
-import {Trello} from "./trello";
+import React from 'react';
+import { Trello } from './trello';
 
-export type LocaleKey = "en" | "fr" | "de" | "es";
+export type LocaleKey = 'en' | 'fr' | 'de' | 'es';
 
-export type LicenseType = "board" | "user";
+export type LicenseType = 'board' | 'user';
 
 export interface LicenseContext {
     loading?: boolean;
@@ -34,7 +34,6 @@ export interface LicenseConditionalProps {
     unlicensed?: React.ReactNode | React.ReactElement;
     children?: React.ReactNode | React.ReactElement;
 }
-
 
 export interface SubscriptionStatusProps {
     isPro: boolean;

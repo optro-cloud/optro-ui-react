@@ -72,7 +72,7 @@ export namespace Trello {
             'on-enable'?: (t: PowerUp.IFrame) => PromiseLike<void>;
             'on-disable'?: (t: Trello.PowerUp.IFrame) => void;
             'remove-data'?: (t: Trello.PowerUp.IFrame) => void;
-            'save-attachment'?:  (t: Trello.PowerUp.IFrame, options: any) => void;
+            'save-attachment'?: (t: Trello.PowerUp.IFrame, options: any) => void;
             'show-settings'?: (t: PowerUp.IFrame) => PromiseLike<void>;
             'authorization-status'?: (t: PowerUp.IFrame, options: any) => PromiseLike<AuthorizationStatusResponse>;
             'show-authorization'?: (t: Trello.PowerUp.IFrame) => void;

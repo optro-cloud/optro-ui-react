@@ -1,8 +1,8 @@
-import {useContext} from "react";
-import {TrelloContext} from "../components";
+import { useContext } from 'react';
+import { TrelloContext } from '../components';
 
 const useProvidedTrello = () => {
-    return useContext(TrelloContext);
+  return useContext(TrelloContext);
 };
 
 export default useProvidedTrello;

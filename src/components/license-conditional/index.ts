@@ -1,4 +1,4 @@
-import LicenseConditional from "./LicenseConditional";
+import LicenseConditional from './LicenseConditional';
 
 export default LicenseConditional;
 export * from './LicenseConditional';
