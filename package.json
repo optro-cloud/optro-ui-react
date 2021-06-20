@@ -2,9 +2,11 @@
   "name": "@optro/ui-react",
   "description": "Optro Power-Up Marketplace UI Components",
   "main": "dist/index.js",
+  "types": "dist/dts/index.d.ts",
   "outputDir": "./dist",
   "files": [
     "dist",
+    "types",
     "bundle.css",
     "README.md"
   ],
@@ -14,7 +16,7 @@
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf dist",
