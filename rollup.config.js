@@ -1,6 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
 import * as path from "path";
-import visualizer from 'rollup-plugin-visualizer';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import {getFiles} from "./scripts/utilities";
@@ -31,17 +30,17 @@ export default {
         typescript({
             tsconfig: './tsconfig.build.json',
             declaration: true,
-            declarationDir: 'dist',
+            declarationDir: 'dist/dts'
         }),
         scss(),
         //dts({}),
         // terser({
         //     ecma: 6
         // }),
-        visualizer({
-            filename: 'bundle-analysis.html',
-            open: true,
-        }),
+        // visualizer({
+        //     filename: 'bundle-analysis.html',
+        //     open: true,
+        // }),
     ],
-    external: ['react', 'react-dom'],
+    external: ['react', 'react-dom', 'tslib'],
 };

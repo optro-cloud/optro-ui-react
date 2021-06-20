@@ -15,7 +15,7 @@ const defaultContext: LicenseContext = {
 
 export const ContextedLicense = React.createContext(defaultContext);
 
-const LicenseProvider = (props: LicenseProviderProps) => {
+const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
   const tContext = useContext(TrelloContext);
 
   const [context, setContext] = useState<LicenseContext>({

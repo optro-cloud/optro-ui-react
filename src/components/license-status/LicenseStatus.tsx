@@ -3,7 +3,7 @@ import { localization, OptroBaseUrl } from '../../common';
 import { LocaleKey, SubscriptionStatusProps } from '../../types';
 import './styles.scss';
 
-const LicenseStatus = (props: SubscriptionStatusProps) => {
+const LicenseStatus = (props: SubscriptionStatusProps): JSX.Element => {
   const locale: LocaleKey = props.locale
     ? props.locale
     : 'en';

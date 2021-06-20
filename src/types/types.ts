@@ -29,10 +29,10 @@ export interface TrelloProviderProps {
 }
 
 export interface LicenseConditionalProps {
-    loading?: React.ReactNode | React.ReactElement;
-    licensed?: React.ReactNode | React.ReactElement;
-    unlicensed?: React.ReactNode | React.ReactElement;
-    children?: React.ReactNode | React.ReactElement;
+    loading?: JSX.Element;
+    licensed?: JSX.Element;
+    unlicensed?: JSX.Element;
+    children?: JSX.Element;
 }
 
 export interface SubscriptionStatusProps {

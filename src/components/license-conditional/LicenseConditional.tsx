@@ -2,7 +2,7 @@ import React from 'react';
 import useLicense from '../../hooks/useLicense';
 import { LicenseConditionalProps } from '../../types';
 
-const LicenseConditional = (props: LicenseConditionalProps) => {
+const LicenseConditional = (props: LicenseConditionalProps): JSX.Element => {
   const licenseContext = useLicense();
 
   // If a loading component is provided in props and the context

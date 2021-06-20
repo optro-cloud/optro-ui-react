@@ -112,6 +112,8 @@ If you are making certain features subscription-only, you may want to hide, or r
 Using the [LicenseConditional](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-conditional/LicenseConditional.tsx) component, you can display different content based on the LicenseProvider data:
 
 ```jsx
+import {LicenseConditional} from '@optro/ui-react';
+
 <LicenseConditional
   unlicensed={<div>This is rendered when the user is not licensed</div>}
 >
@@ -126,6 +128,10 @@ This component helps you indicate what level of subscription a customer has and 
 [LicenseStatus](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-status/LicenseStatus.tsx) shows on screen the status of the current board or member license with a link to subscribe or manage their existing subscription:
 
 ```jsx
+import {LicenseStatus} from '@optro/ui-react';
+import '@optro/ui-react/bundle.css';
+
+// use the JSX element in your components
 <LicenseStatus
     isPro={lic.licensed} // You can get this boolean from the useLicense() hook
     onGetPro={functionToCallOnUpsell} // You can call a function when the user wants to upgrade (e.g. direct to Optro Listing page)

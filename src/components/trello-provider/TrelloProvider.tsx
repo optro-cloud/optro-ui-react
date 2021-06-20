@@ -4,7 +4,7 @@ import { useTrelloApi } from '../../hooks';
 
 export const TrelloContext = React.createContext<Trello.PowerUp.IFrame | undefined>(undefined);
 
-const TrelloProvider = (props: TrelloProviderProps) => {
+const TrelloProvider = (props: TrelloProviderProps): JSX.Element => {
   const [context, setContext] = useState(props.t);
   useEffect(() => {
     if (!props.t) {
