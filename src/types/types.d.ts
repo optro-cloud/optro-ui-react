@@ -18,7 +18,7 @@ export interface LicenseContext {
 export interface LicenseProviderProps {
     apiKey: string;
     powerupId: string;
-    LicenseType?: LicenseType;
+    licenseType?: LicenseType;
     t?: PowerUp.IFrame;
     optroClient?: any;
     children?: React.ReactNode | React.ReactElement;
@@ -38,7 +38,7 @@ export interface LicenseConditionalProps {
 
 
 export interface SubscriptionStatusProps {
-    isPro: boolean;
+    isPro?: boolean;
     locale?: LocaleKey;
     powerupId?: string;
     onGetPro?: () => void;

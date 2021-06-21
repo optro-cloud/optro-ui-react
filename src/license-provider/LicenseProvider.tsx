@@ -26,7 +26,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
         licensed: false,
         expired: false,
         powerupId: props.powerupId,
-        licenseType: props.LicenseType ?? 'board',
+        licenseType: props.licenseType ?? 'board',
         licenseId: ''
     })
 
@@ -40,19 +40,19 @@ const LicenseProvider = (props: LicenseProviderProps) => {
     useEffect(() => {
         const t: Trello.PowerUp.IFrame | undefined = props.t ?? tContext;
         if(t){
-            let newContext = {...context};
-            if (props.LicenseType == LicenseTypeUser) {
+            let newContext = {...context, loading: true};
+            if (props.licenseType == LicenseTypeUser) {
                 newContext.licenseId= t.getContext().member;
                 props.optroClient.getMemberLicenseStatus(newContext.licenseId).then((result: OptroLicenseResponse ) => {
-                    newContext = {...newContext , ...processResults(result)};
+                    newContext = {...newContext , loading: false, ...processResults(result)};
                     setContext(newContext);
                 }).catch(function(error: any) {
                     console.error(error);
                 });
-            } else if (props.LicenseType == LicenseTypeBoard) {
+            } else if (props.licenseType == LicenseTypeBoard) {
                 newContext.licenseId= t.getContext().board;
                 props.optroClient.getBoardLicenseStatus(newContext.licenseId).then((result: OptroLicenseResponse ) => {
-                    newContext = {...newContext , ...processResults(result)};
+                    newContext = {...newContext , loading: false, ...processResults(result)};
                     setContext(newContext);
                 }).catch(function(error: any) {
                     console.error(error);
@@ -69,6 +69,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
 
     return (
         <ContextedLicense.Provider value={context}>
+            {console.log("NEW CONTEXT", context)}
             {props.children}
         </ContextedLicense.Provider>
     );
