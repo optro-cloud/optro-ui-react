@@ -1,0 +1,56 @@
+.OUR-simple-loader{
+
+  display: flex;
+  flex-direction: row;
+  gap: .75em;
+  justify-content: center;
+
+  @keyframes loadDot{
+    0% {
+      transform: scale(1.0);
+    }
+    10% {
+      transform: scale(1.1)
+    }
+    20% {
+      transform: scale(1.2)
+    }
+    22.5% {
+      transform: scale(1.4)
+    }
+    25% {
+      transform: scale(1.5)
+    }
+    27.5% {
+      transform: scale(1.4)
+    }
+    30% {
+      transform: scale(1.2)
+    }
+    45% {
+      transform: scale(1.1)
+    }
+    50% {
+      transform: scale(1)
+    }
+  }
+
+  .loadDot{
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    background: black;
+    animation-name: loadDot;
+    animation-duration: 1.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(90);
+    &:nth-child(2n){
+      animation-delay: .6s;
+    }
+    &:nth-child(3n){
+      animation-delay: 1.2s;
+    }
+  }
+}
+
+

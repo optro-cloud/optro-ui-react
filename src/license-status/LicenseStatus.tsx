@@ -4,6 +4,7 @@ import {localization} from "../localization/i18n";
 import './styles.scss';
 import {OptroBaseUrl} from "../common/globals";
 import {useLicense} from "../index";
+import SimpleLoader from "../loader/SimpleLoader";
 
 const LicenseStatus = (props: SubscriptionStatusProps ) => {
     const locale: LocaleKey = props.locale
@@ -14,6 +15,14 @@ const LicenseStatus = (props: SubscriptionStatusProps ) => {
         : OptroBaseUrl;
 
     const license = useLicense();
+
+    if(props.isPro == undefined && license.loading){
+      return (
+        <div className="license-display license-display-pro">
+              <SimpleLoader colour={"white"}/>
+        </div>
+      )
+    }
 
     if (
       (props.isPro!=null && props.isPro)
