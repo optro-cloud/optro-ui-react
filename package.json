@@ -16,7 +16,7 @@
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -27,8 +27,8 @@
     "build:publish": "npm run build && npm publish"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
