@@ -69,7 +69,6 @@ const LicenseProvider = (props: LicenseProviderProps) => {
 
     return (
         <ContextedLicense.Provider value={context}>
-            {console.log("NEW CONTEXT", context)}
             {props.children}
         </ContextedLicense.Provider>
     );
