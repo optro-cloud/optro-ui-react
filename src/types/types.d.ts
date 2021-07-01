@@ -10,6 +10,7 @@ export interface LicenseContext {
     loading?: boolean;
     licensed: boolean;
     expired: boolean;
+    errored: boolean;
     powerupId: string;
     licenseType: LicenseType;
     licenseId: string;

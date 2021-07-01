@@ -16,6 +16,15 @@ const LicenseStatus = (props: SubscriptionStatusProps ) => {
 
     const license = useLicense();
 
+
+  if(true || (props.isPro == undefined && license.errored)){
+    return (
+      <div className="license-display license-display-error">
+        <div className={'information-icon'}>i</div><a href={"https://www.google.com"}>Unable to retrieve license status</a>
+      </div>
+    )
+  }
+
     if(props.isPro == undefined && license.loading){
       return (
         <div className="license-display license-display-pro">

@@ -25,6 +25,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
         loading: true,
         licensed: false,
         expired: false,
+        errored: false,
         powerupId: props.powerupId,
         licenseType: props.licenseType ?? 'board',
         licenseId: ''
@@ -46,17 +47,25 @@ const LicenseProvider = (props: LicenseProviderProps) => {
                 props.optroClient.getMemberLicenseStatus(newContext.licenseId).then((result: OptroLicenseResponse ) => {
                     newContext = {...newContext , loading: false, ...processResults(result)};
                     setContext(newContext);
-                }).catch(function(error: any) {
-                    console.error(error);
-                });
+                }).catch(
+                  (error: any) => {
+                        console.error("An error occurred while checking the license:", error);
+                        newContext = {...newContext , loading: false, errored: true};
+                        setContext(newContext);
+                    }
+                );
             } else if (props.licenseType == LicenseTypeBoard) {
                 newContext.licenseId= t.getContext().board;
                 props.optroClient.getBoardLicenseStatus(newContext.licenseId).then((result: OptroLicenseResponse ) => {
                     newContext = {...newContext , loading: false, ...processResults(result)};
                     setContext(newContext);
-                }).catch(function(error: any) {
-                    console.error(error);
-                });
+                }).catch(
+                  (error: any) => {
+                        console.error("An error occurred while checking the license:", error);
+                        newContext = {...newContext , loading: false, errored: true};
+                        setContext(newContext);
+                    }
+                );
             }
             else {
                 throw new Error('Non standard license type provided. Use "board" or "user"');
@@ -69,6 +78,7 @@ const LicenseProvider = (props: LicenseProviderProps) => {
 
     return (
         <ContextedLicense.Provider value={context}>
+            {console.log("NEW CONTEXT", context)}
             {props.children}
         </ContextedLicense.Provider>
     );
