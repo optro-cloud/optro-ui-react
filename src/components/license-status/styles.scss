@@ -4,6 +4,31 @@
   border-radius: 4px;
   padding: 8px;
 
+  &.license-display-error{
+    background-color: #007ad5;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .information-icon{
+      color: white;
+      width: 1em;
+      height: 1em;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1px;
+      margin-right: 5px;
+    }
+    a{
+      color: white;
+    }
+  }
+
   &.license-display-pro {
     background-color: #42526E;
   }
@@ -24,5 +49,11 @@
       opacity: 0.8;
     }
   }
+
+  .OUR-simple-loader{
+    font-size: 8px;
+    margin: 5px;
+  }
+
 }
 

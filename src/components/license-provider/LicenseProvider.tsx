@@ -8,6 +8,7 @@ const defaultContext: LicenseContext = {
   loading: true,
   licensed: false,
   expired: false,
+  errored: false,
   powerupId: '',
   licenseType: LicenseTypeBoard,
   licenseId: '',
@@ -22,6 +23,7 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
     loading: true,
     licensed: false,
     expired: false,
+    errored: false,
     powerupId: props.powerupId,
     licenseType: props.licenseType ?? 'board',
     licenseId: '',
@@ -45,7 +47,9 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
             newContext = { ...newContext, ...processResults(result) };
             setContext(newContext);
           }).catch((error: any) => {
-            console.error(error);
+          console.error("An error occurred while checking the license:", error);
+          newContext = {...newContext , loading: false, errored: true};
+          setContext(newContext);
           });
       } else if (props.licenseType === LicenseTypeBoard) {
         newContext.licenseId = t.getContext().board;
@@ -54,7 +58,9 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
             newContext = { ...newContext, ...processResults(result) };
             setContext(newContext);
           }).catch((error: any) => {
-            console.error(error);
+          console.error("An error occurred while checking the license:", error);
+          newContext = {...newContext , loading: false, errored: true};
+          setContext(newContext);
           });
       } else {
         throw new Error('Non standard license type provided. Use "board" or "user"');

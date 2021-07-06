@@ -9,6 +9,7 @@ export interface LicenseContext {
     loading?: boolean;
     licensed: boolean;
     expired: boolean;
+    errored: boolean;
     powerupId: string;
     licenseType: LicenseType;
     licenseId: string;
@@ -36,7 +37,7 @@ export interface LicenseConditionalProps {
 }
 
 export interface SubscriptionStatusProps {
-    isPro: boolean;
+    isPro?: boolean;
     locale?: LocaleKey;
     powerupId?: string;
     onGetPro?: () => void;
