@@ -1,0 +1,21 @@
+.license-status-header {
+  margin-bottom: 4px; }
+
+.license-display {
+  text-align: center;
+  color: white;
+  border-radius: 4px;
+  padding: 8px; }
+  .license-display.license-display-pro {
+    background-color: #42526E; }
+  .license-display.license-display-free {
+    background-color: #5AAC44; }
+  .license-display .license-display-link {
+    cursor: pointer;
+    margin-left: 6px;
+    text-decoration: underline;
+    color: white; }
+    .license-display .license-display-link:hover {
+      filter: blur(0.4px);
+      color: white;
+      opacity: 0.8; }

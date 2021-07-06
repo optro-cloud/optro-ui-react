@@ -1,10 +1,9 @@
-import * as React from "react";
-import {Trello} from "./trello";
-import PowerUp = Trello.PowerUp;
+import React from 'react';
+import { Trello } from './trello';
 
-export type LocaleKey = "en" | "fr" | "de" | "es";
+export type LocaleKey = 'en' | 'fr' | 'de' | 'es';
 
-export type LicenseType = "board" | "user";
+export type LicenseType = 'board' | 'user';
 
 export interface LicenseContext {
     loading?: boolean;
@@ -20,23 +19,22 @@ export interface LicenseProviderProps {
     apiKey: string;
     powerupId: string;
     licenseType?: LicenseType;
-    t?: PowerUp.IFrame;
+    t?: Trello.PowerUp.IFrame;
     optroClient?: any;
     children?: React.ReactNode | React.ReactElement;
 }
 
 export interface TrelloProviderProps {
-    t: PowerUp.IFrame;
+    t: Trello.PowerUp.IFrame;
     children?: React.ReactNode | React.ReactElement;
 }
 
 export interface LicenseConditionalProps {
-    loading?: React.ReactNode | React.ReactElement;
-    licensed?: React.ReactNode | React.ReactElement;
-    unlicensed?: React.ReactNode | React.ReactElement;
-    children?: React.ReactNode | React.ReactElement;
+    loading?: JSX.Element;
+    licensed?: JSX.Element;
+    unlicensed?: JSX.Element;
+    children?: JSX.Element;
 }
-
 
 export interface SubscriptionStatusProps {
     isPro?: boolean;

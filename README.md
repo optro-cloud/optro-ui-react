@@ -15,11 +15,11 @@ Alternatively, an example of using the Trello Provider and Hooks can be found in
 
 Before you can use the Optro UI, you need to install it:
 
-```
-// Using Yarn
+```console
+# Using Yarn
 yarn add @optro/api-client
 
-// Using NPM
+# Using NPM
 npm install @optro/api-client
 ```
 
@@ -29,7 +29,7 @@ Find out how to access the Trello API throughout your Power-Up using the [Trello
 
 First, place the following code at the root of your project:
 
-```
+```jsx
 import {TrelloProvider} from '@optro/ui-react';
 const t = window.TrelloPowerUp.iframe();
 
@@ -44,7 +44,7 @@ function ReactRoot() {
 
 Next, use the following React Hook which provides access to the [Trello API](https://developer.atlassian.com/cloud/trello/power-ups/client-library/getting-and-setting-data/) in a component that is lower down the hierarchy:
 
-```
+```jsx
 import {useProvidedTrello} from '@optro/ui-react';
 
 function ReactComponent() {
@@ -68,9 +68,9 @@ Using the same pattern as the Trello API Provider, you can access the license st
 
 First of all, add the [LicenseProvider](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-provider/LicenseProvider.tsx) higher-order component (HOC) to the root of your React project (e.g. router):
 
-```
+```jsx
 import {LicenseProvider, TrelloProvider} from '@optro/ui-react';  
-import {OptroLicenseApi} from '@optro/api-client/dist';
+import {OptroLicenseApi} from '@optro/api-client';
 
 // Create a caching Optro License API client
 const optroClient = new OptroLicenseApi(
@@ -94,7 +94,7 @@ function ReactRoot() {
 
 You can then access the license status of the board or member using the [useLicense](https://github.com/optro-cloud/optro-ui-react/blob/main/src/use-license/useLicense.ts) hook in any component further down the hierarchy:
 
-```
+```jsx
 import {useLicense} from '@optro/ui-react';
 
 function ReactComponent() {
@@ -107,22 +107,36 @@ function ReactComponent() {
 
 ### Conditionally Allow/Deny Features (Paywalling)
 
-TODO
+If you are making certain features subscription-only, you may want to hide, or render alternative content when the user does not have a valid subscription.
 
-[LicenseConditional](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-conditional/LicenseConditional.tsx) - display different content based on whether the Trello Board or Member has paid for a subscription (paywall)
+Using the [LicenseConditional](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-conditional/LicenseConditional.tsx) component, you can display different content based on the LicenseProvider data:
+
+```jsx
+import {LicenseConditional} from '@optro/ui-react';
+
+<LicenseConditional
+  unlicensed={<div>This is rendered when the user is not licensed</div>}
+>
+  This is rendered when the user has a valid subscription
+</LicenseConditional>
+```
 
 ### Display Licence Status
 
-TODO 
+This component helps you indicate what level of subscription a customer has and provide an easy way for users to start a subscription, or manage their existing subscription.
 
-[LicenseStatus](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-status/LicenseStatus.tsx) - show on screen the status of the current board or member with a link to subscribe or manage their existing subscription
+[LicenseStatus](https://github.com/optro-cloud/optro-ui-react/blob/main/src/license-status/LicenseStatus.tsx) shows on screen the status of the current board or member license with a link to subscribe or manage their existing subscription:
 
-```
+```jsx
+import {LicenseStatus} from '@optro/ui-react';
+import '@optro/ui-react/bundle.css';
+
+// use the JSX element in your components
 <LicenseStatus
-    isPro={isTheUserLicensed}
-    onGetPro={functionToCallOnUpsell}
+    isPro={lic.licensed} // You can get this boolean from the useLicense() hook
+    onGetPro={functionToCallOnUpsell} // You can call a function when the user wants to upgrade (e.g. direct to Optro Listing page)
     powerupId={yourPowerupId}
-    locale={one of "en" | "de" | "fr" | "es", or window.locale}
+    locale={one of "en" | "de" | "fr" | "es"} // Trello provides window.locale for this
 />
 ```
 
@@ -132,10 +146,18 @@ We welcome contributions to the source code - just raise a Pull Request!
 
 ## License
 
-This library, excluding styles is provided under the MIT License.
+This library, excluding branding is provided under the MIT License.
 
 ## About Optro
 
-[Optro Market](https://www.optro.cloud) is the best place to discover new Pro Power-ups for Trello.
+[Optro](https://www.optro.cloud) is the best place to discover new Pro Power-ups for Trello.
 
-Use this SDK to hook into the Optro Market API and generate revenue from your innovative Power-up ideas!
+Using [Optro Vendor](https://vendor.optro.cloud), you can learn how to build Power-Ups with best practice and monetization features baked right in!
+
+Use the tools provided with Optro and generate revenue from your innovative Power-up ideas:
+* https://github.com/optro-cloud/create-trello-powerup
+* https://github.com/optro-cloud/trello-powerup-full-sample
+* https://github.com/optro-cloud/optro-ui-react
+* https://github.com/optro-cloud/optro-api-client
+
+View our getting started guide over on the [Optro Vendor Docs](https://docs.appfox.io/optro-vendor/) site.

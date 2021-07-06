@@ -1,36 +1,46 @@
-import scss from 'rollup-plugin-scss';
 import typescript from '@rollup/plugin-typescript';
 import * as path from "path";
-import babel from '@rollup/plugin-babel'
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import {getFiles} from "./scripts/utilities";
+import babel from "@rollup/plugin-babel";
+import scss from "rollup-plugin-scss";
+
+const extensions = ['.js', '.ts', '.jsx', '.tsx', '.scss'];
 
 export default {
     input: [
         path.join(__dirname, "src", "index.ts"),
-        path.join(__dirname, "src", "license-status", "LicenseStatus.tsx"),
-        path.join(__dirname, "src", "license-provider", "LicenseProvider.tsx"),
-        path.join(__dirname, "src", "license-conditional", "LicenseConditional.tsx"),
-        path.join(__dirname, "src", "use-license", "useLicense.ts"),
-        path.join(__dirname, "src", "trello-provider", "TrelloProvider.tsx"),
-        path.join(__dirname, "src", "use-trello-api", "useProvidedTrello.ts"),
-        path.join(__dirname, "src", "use-trello-api", "useTrelloApi.ts"),
+        ...getFiles(path.join(__dirname, "src", "common"), extensions),
+        ...getFiles(path.join(__dirname, "src", "components"), extensions),
+        ...getFiles(path.join(__dirname, "src", "hooks"), extensions),
+        ...getFiles(path.join(__dirname, "src", "types"), extensions)
     ],
-    output: [
-        {
-            dir: "dist",
-            format: 'cjs',
-            exports: 'named',
-            sourcemap: true,
-            strict: false
-        }
-    ],
+    output: {
+        dir: 'dist',
+        format: 'esm',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        sourcemap: true,
+    },
     plugins: [
-        babel({ exclude: 'node_modules/**', babelHelpers: "bundled" }),
         resolve(),
+        commonjs(),
+        babel(),
+        typescript({
+            tsconfig: './tsconfig.build.json',
+            declaration: true,
+            declarationDir: 'dist/dts'
+        }),
         scss(),
-        typescript(),
-        commonjs()
+        //dts({}),
+        // terser({
+        //     ecma: 6
+        // }),
+        // visualizer({
+        //     filename: 'bundle-analysis.html',
+        //     open: true,
+        // }),
     ],
-    external: ['react', 'react-dom']
-}
+    external: ['react', 'react-dom', 'tslib'],
+};

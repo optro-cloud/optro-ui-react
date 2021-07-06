@@ -2,22 +2,33 @@
   "name": "@optro/ui-react",
   "description": "Optro Power-Up Marketplace UI Components",
   "main": "dist/index.js",
-  "module": "dist/index.ts",
+  "types": "dist/dts/index.d.ts",
+  "outputDir": "./dist",
+  "files": [
+    "dist",
+    "types",
+    "bundle.css",
+    "README.md"
+  ],
   "homepage": "https://github.com/optro-cloud/optro-ui-react",
   "repository": {
     "type": "git",
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "1.0.5",
-  "license": "Commercial",
+  "version": "1.0.28",
+  "license": "MIT",
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "rollup -c",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "build:local": "npm run build && npm pack",
+    "build:publish": "npm run build && npm publish"
   },
   "peerDependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -31,17 +42,33 @@
     "@rollup/plugin-typescript": "^8.2.0",
     "@types/react": "^16.8.25",
     "@types/react-dom": "^16.8.5",
-    "node-sass": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "node-sass": "^6.0.0",
     "path": "^0.12.7",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "postcss": "^8.3.4",
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6",
     "rollup": "^2.39.0",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-scss": "^2.6.1",
-    "tslib": "^2.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-visualizer": "^5.5.0",
+    "sass": "^1.35.1",
     "typescript": "^4.1.5"
   },
   "dependencies": {
-    "@optro/api-client": "^1.0.1"
+    "@optro/api-client": "^1.0.3",
+    "tslib": "^2.1.0"
   }
 }
-

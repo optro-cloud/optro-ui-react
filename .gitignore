@@ -1,4 +1,12 @@
+# General
+.vscode/
 node_modules/
 .idea/
-dist/
+# Build outputs
+dist
+storybook-static
+*.tgz
 bundle-analysis.html
+
+# Dev files
+debug.log
