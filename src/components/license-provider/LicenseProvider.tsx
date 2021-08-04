@@ -31,6 +31,7 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
 
   const processResults = (result: OptroLicenseResponse) => {
     return {
+      loading: false,
       expired: result.isRegistered && !result.isLicensed,
       licensed: result.isRegistered && result.isLicensed,
     };
