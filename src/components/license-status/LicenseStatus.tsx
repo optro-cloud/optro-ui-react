@@ -5,7 +5,7 @@ import { LocaleKey, SubscriptionStatusProps } from '../../types';
 import { useLicense } from '../../hooks';
 import './styles.scss';
 
-const LicenseStatus = (props: SubscriptionStatusProps): JSX.Element => {
+const LicenseStatus = (props: SubscriptionStatusProps): React.ReactElement => {
   const locale: LocaleKey = props.locale
     ? props.locale
     : 'en';
@@ -14,20 +14,25 @@ const LicenseStatus = (props: SubscriptionStatusProps): JSX.Element => {
     : OptroBaseUrl;
   const license = useLicense();
 
-  if(props.isPro == null && license.errored){
-    return (
-      <div className="license-display license-display-error">
-        <div className={'information-icon'}>i</div><a href={"https://www.google.com"}>Unable to retrieve license status</a>
-      </div>
-    )
+  if (license.inactive) {
+    return <></>;
   }
 
-  if(props.isPro == null && license.loading){
+  if (props.isPro == null && license.errored) {
+    return (
+      <div className="license-display license-display-error">
+        <div className="information-icon">i</div>
+        <a href="https://www.google.com">Unable to retrieve license status</a>
+      </div>
+    );
+  }
+
+  if (props.isPro == null && license.loading) {
     return (
       <div className="license-display license-display-pro">
-        <SimpleLoader colour={"white"}/>
+        <SimpleLoader colour="white" />
       </div>
-    )
+    );
   }
 
   if (props.isPro || (props.isPro == null && license.licensed)) {

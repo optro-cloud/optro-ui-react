@@ -16,7 +16,7 @@ const defaultContext: LicenseContext = {
 
 export const ContextedLicense = React.createContext(defaultContext);
 
-const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
+const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
   const tContext = useContext(TrelloContext);
 
   const [context, setContext] = useState<LicenseContext>({
@@ -31,6 +31,7 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
 
   const processResults = (result: OptroLicenseResponse) => {
     return {
+      loading: false,
       expired: result.isRegistered && !result.isLicensed,
       licensed: result.isRegistered && result.isLicensed,
     };
@@ -40,6 +41,19 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
     const t: Trello.PowerUp.IFrame | undefined = props.t ?? tContext;
     if (t) {
       let newContext = { ...context };
+
+      // Escape clause if monetization is inactive
+      if (props.apiKey === 'UNSPECIFIED') {
+        setContext({
+          ...newContext,
+          loading: false,
+          expired: false,
+          licensed: true,
+          inactive: true,
+        });
+        return;
+      }
+
       if (props.licenseType === LicenseTypeUser) {
         newContext.licenseId = t.getContext().member;
         props.optroClient.getMemberLicenseStatus(newContext.licenseId)
@@ -47,9 +61,9 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
             newContext = { ...newContext, ...processResults(result) };
             setContext(newContext);
           }).catch((error: any) => {
-          console.error("An error occurred while checking the license:", error);
-          newContext = {...newContext , loading: false, errored: true};
-          setContext(newContext);
+            console.error('An error occurred while checking the license:', error);
+            newContext = { ...newContext, loading: false, errored: true };
+            setContext(newContext);
           });
       } else if (props.licenseType === LicenseTypeBoard) {
         newContext.licenseId = t.getContext().board;
@@ -58,9 +72,9 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
             newContext = { ...newContext, ...processResults(result) };
             setContext(newContext);
           }).catch((error: any) => {
-          console.error("An error occurred while checking the license:", error);
-          newContext = {...newContext , loading: false, errored: true};
-          setContext(newContext);
+            console.error('An error occurred while checking the license:', error);
+            newContext = { ...newContext, loading: false, errored: true };
+            setContext(newContext);
           });
       } else {
         throw new Error('Non standard license type provided. Use "board" or "user"');

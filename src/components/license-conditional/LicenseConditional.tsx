@@ -2,7 +2,7 @@ import React from 'react';
 import useLicense from '../../hooks/useLicense';
 import { LicenseConditionalProps } from '../../types';
 
-const LicenseConditional = (props: LicenseConditionalProps): JSX.Element => {
+const LicenseConditional = (props: LicenseConditionalProps): React.ReactElement => {
   const licenseContext = useLicense();
 
   // If a loading component is provided in props and the context
@@ -10,6 +10,22 @@ const LicenseConditional = (props: LicenseConditionalProps): JSX.Element => {
   // return the loading component
   if (props.loading && licenseContext.loading) {
     return props.loading;
+  }
+
+  // Monetization is marked as inactive
+  // Return a pro version as preference,
+  // unlicensed as fallback, or none
+  if (licenseContext.inactive) {
+    if (props.licensed) {
+      return props.licensed;
+    }
+    if (props.children) {
+      return props.children;
+    }
+    if (props.unlicensed) {
+      return props.unlicensed;
+    }
+    return <></>;
   }
 
   // If a unlicensed component is provided in props and the context
