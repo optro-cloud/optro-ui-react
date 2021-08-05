@@ -13,6 +13,7 @@ export interface LicenseContext {
     powerupId: string;
     licenseType: LicenseType;
     licenseId: string;
+    inactive?: boolean;
 }
 
 export interface LicenseProviderProps {
@@ -30,10 +31,10 @@ export interface TrelloProviderProps {
 }
 
 export interface LicenseConditionalProps {
-    loading?: JSX.Element;
-    licensed?: JSX.Element;
-    unlicensed?: JSX.Element;
-    children?: JSX.Element;
+    loading?: React.ReactElement;
+    licensed?: React.ReactElement;
+    unlicensed?: React.ReactElement;
+    children?: React.ReactElement;
 }
 
 export interface SubscriptionStatusProps {
