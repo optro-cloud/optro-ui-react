@@ -5,7 +5,7 @@ import { LocaleKey, SubscriptionStatusProps } from '../../types';
 import { useLicense } from '../../hooks';
 import './styles.scss';
 
-const LicenseStatus = (props: SubscriptionStatusProps): JSX.Element => {
+const LicenseStatus = (props: SubscriptionStatusProps): React.ReactElement => {
   const locale: LocaleKey = props.locale
     ? props.locale
     : 'en';
@@ -13,6 +13,10 @@ const LicenseStatus = (props: SubscriptionStatusProps): JSX.Element => {
     ? `${OptroBaseUrl}/app/${props.powerupId}`
     : OptroBaseUrl;
   const license = useLicense();
+
+  if (license.inactive) {
+    return <></>;
+  }
 
   if (props.isPro == null && license.errored) {
     return (

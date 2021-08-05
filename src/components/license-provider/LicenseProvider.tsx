@@ -16,7 +16,7 @@ const defaultContext: LicenseContext = {
 
 export const ContextedLicense = React.createContext(defaultContext);
 
-const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
+const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
   const tContext = useContext(TrelloContext);
 
   const [context, setContext] = useState<LicenseContext>({
@@ -41,6 +41,19 @@ const LicenseProvider = (props: LicenseProviderProps): JSX.Element => {
     const t: Trello.PowerUp.IFrame | undefined = props.t ?? tContext;
     if (t) {
       let newContext = { ...context };
+
+      // Escape clause if monetization is inactive
+      if (props.apiKey === 'UNSPECIFIED') {
+        setContext({
+          ...newContext,
+          loading: false,
+          expired: false,
+          licensed: true,
+          inactive: true,
+        });
+        return;
+      }
+
       if (props.licenseType === LicenseTypeUser) {
         newContext.licenseId = t.getContext().member;
         props.optroClient.getMemberLicenseStatus(newContext.licenseId)
