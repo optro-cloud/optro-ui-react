@@ -23,6 +23,7 @@ export interface LicenseProviderProps {
     t?: Trello.PowerUp.IFrame;
     optroClient?: any;
     children?: React.ReactNode | React.ReactElement;
+    licensed?: boolean;
 }
 
 export interface TrelloProviderProps {
