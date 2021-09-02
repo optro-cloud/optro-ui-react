@@ -21,7 +21,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
 
   const [context, setContext] = useState<LicenseContext>({
     loading: true,
-    licensed: props.licensed || false,
+    licensed: props.licensed ? props.licensed : false,
     expired: false,
     errored: false,
     powerupId: props.powerupId,
@@ -33,7 +33,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
     return {
       loading: false,
       expired: result.isRegistered && !result.isLicensed,
-      licensed: props.licensed || (result.isRegistered && result.isLicensed),
+      licensed: props.licensed ? props.licensed : (result.isRegistered && result.isLicensed),
     };
   };
 
@@ -48,7 +48,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
           ...newContext,
           loading: false,
           expired: false,
-          licensed: props.licensed || true,
+          licensed: props.licensed ? props.licensed : true,
           inactive: true,
         });
         return;
