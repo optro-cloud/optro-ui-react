@@ -92,18 +92,6 @@ function ReactRoot() {
 }
 ```
 
-You can also manually set the licensed status for testing purposes using the licensed prop for the ```LicenseProvider``` as shown in the example below.
-```jsx
-    <LicenseProvider
-      apiKey={OPTRO_API_KEY}
-      powerupId={POWERUP_ID}
-      optroClient={optroClient}
-      licenseType={'board'}
-      licenced    // replace with licensed={false} to emulate an unlicensed state
-    >
-```
-
-
 You can then access the license status of the board or member using the [useLicense](https://github.com/optro-cloud/optro-ui-react/blob/main/src/use-license/useLicense.ts) hook in any component further down the hierarchy:
 
 ```jsx
@@ -151,6 +139,16 @@ import '@optro/ui-react/bundle.css';
     locale={one of "en" | "de" | "fr" | "es"} // Trello provides window.locale for this
 />
 ```
+## Testing
+
+### Overriding the license status during development
+During development you might wish to quickly switch between a licensed and unlicensed state to ensure correct functionality.
+This can be done using the ```overrideLicense``` property for the ```LicenseProvider``` component.
+
+The overrideLicense property accepts the following values
+* ```'free'```  Any pro license returned from the API will be overridden.
+* ```'pro'```  The LicenseProvider component will behave as if there is currently an active pro license regardless of the API's response.
+* ```undefined``` when no value is defined the override will not be active
 
 
 ## Contributing
