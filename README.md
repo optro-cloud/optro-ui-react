@@ -17,10 +17,10 @@ Before you can use the Optro UI, you need to install it:
 
 ```console
 # Using Yarn
-yarn add @optro/api-client
+yarn add @optro/ui-react
 
 # Using NPM
-npm install @optro/api-client
+npm install @optro/ui-react
 ```
 
 ##  Access the Trello API with React
@@ -92,6 +92,18 @@ function ReactRoot() {
 }
 ```
 
+You can also manually set the licensed status for testing purposes using the licensed prop for the ```LicenseProvider``` as shown in the example below.
+```jsx
+    <LicenseProvider
+      apiKey={OPTRO_API_KEY}
+      powerupId={POWERUP_ID}
+      optroClient={optroClient}
+      licenseType={'board'}
+      licenced    // replace with licensed={false} to emulate an unlicensed state
+    >
+```
+
+
 You can then access the license status of the board or member using the [useLicense](https://github.com/optro-cloud/optro-ui-react/blob/main/src/use-license/useLicense.ts) hook in any component further down the hierarchy:
 
 ```jsx
@@ -139,6 +151,7 @@ import '@optro/ui-react/bundle.css';
     locale={one of "en" | "de" | "fr" | "es"} // Trello provides window.locale for this
 />
 ```
+
 
 ## Contributing
 
