@@ -17,10 +17,10 @@ Before you can use the Optro UI, you need to install it:
 
 ```console
 # Using Yarn
-yarn add @optro/api-client
+yarn add @optro/ui-react
 
 # Using NPM
-npm install @optro/api-client
+npm install @optro/ui-react
 ```
 
 ##  Access the Trello API with React
@@ -139,6 +139,17 @@ import '@optro/ui-react/bundle.css';
     locale={one of "en" | "de" | "fr" | "es"} // Trello provides window.locale for this
 />
 ```
+## Testing
+
+### Overriding the license status during development
+During development you might wish to quickly switch between a licensed and unlicensed state to ensure correct functionality.
+This can be done using the ```overrideLicense``` property for the ```LicenseProvider``` component.
+
+The overrideLicense property accepts the following values
+* ```'free'```  Any pro license returned from the API will be overridden.
+* ```'pro'```  The LicenseProvider component will behave as if there is currently an active pro license regardless of the API's response.
+* ```undefined``` when no value is defined the override will not be active
+
 
 ## Contributing
 
