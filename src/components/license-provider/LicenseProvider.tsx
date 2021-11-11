@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { OptroLicenseResponse } from '@optro/api-client/dist/types';
 import { LicenseContext, LicenseProviderProps, Trello } from '../../types';
-import { LicenseTypeBoard, LicenseTypeUser } from '../../common';
+import { LicenseTypeBoard, LicenseTypeOrganisation, LicenseTypeUser } from '../../common';
 import { TrelloContext } from '../trello-provider';
 
 const defaultContext: LicenseContext = {
@@ -85,8 +85,26 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
             newContext = { ...newContext, loading: false, errored: true };
             setContext(newContext);
           });
+      } else if (props.licenseType === LicenseTypeOrganisation) {
+        const organisationId = t.getContext().organization;
+        if (organisationId) {
+          newContext.licenseId = organisationId;
+        } else {
+          console.error('Board is not associated with an organisation');
+          newContext = { ...newContext, loading: false, errored: true};
+          setContext(newContext);
+        }
+        props.optroClient.getOrganisationLicenseStatus(newContext.licenseId)
+          .then((result: OptroLicenseResponse) => {
+            newContext = { ...newContext, ...processResults(result) };
+            setContext(newContext);
+          }).catch((error: any) => {
+            console.error('An error occurred while checking the license:', error);
+            newContext = { ...newContext, loading: false, errored: true };
+            setContext(newContext);
+          });
       } else {
-        throw new Error('Non standard license type provided. Use "board" or "user"');
+        throw new Error('Non standard license type provided. Use "board", "user", or "organisation"');
       }
       setContext(newContext);
     } else {
