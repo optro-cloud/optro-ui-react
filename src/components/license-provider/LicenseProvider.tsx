@@ -19,11 +19,18 @@ export const ContextedLicense = React.createContext(defaultContext);
 const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
   const tContext = useContext(TrelloContext);
 
-  const override = props.overrideLicense=='pro'? true : props.overrideLicense=='free'? false : undefined;
+  let override: boolean | undefined;
+  if (props.overrideLicense === 'pro') {
+    override = true;
+  } else if (props.overrideLicense === 'free') {
+    override = false;
+  } else {
+    override = undefined;
+  }
 
   const [context, setContext] = useState<LicenseContext>({
     loading: true,
-    licensed: override ? override : false,
+    licensed: override || false,
     expired: false,
     errored: false,
     powerupId: props.powerupId,
@@ -35,7 +42,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
     return {
       loading: false,
       expired: result.isRegistered && !result.isLicensed,
-      licensed: override ? override : (result.isRegistered && result.isLicensed),
+      licensed: override || (result.isRegistered && result.isLicensed),
     };
   };
 
@@ -50,7 +57,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
           ...newContext,
           loading: false,
           expired: false,
-          licensed: override ? override : true,
+          licensed: override || true,
           inactive: true,
         });
         return;
