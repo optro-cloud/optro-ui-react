@@ -16,7 +16,7 @@
     "url": "https://github.com/optro-cloud/optro-ui-react.git"
   },
   "website": "https://www.optro.cloud",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -55,8 +55,6 @@
     "node-sass": "^6.0.0",
     "path": "^0.12.7",
     "postcss": "^8.3.4",
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6",
     "rollup": "^2.39.0",
     "rollup-plugin-dts": "^3.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
