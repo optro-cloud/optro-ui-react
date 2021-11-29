@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { OptroLicenseResponse } from '@optro/api-client/dist/types';
 import { LicenseContext, LicenseProviderProps, Trello } from '../../types';
-import { LicenseTypeBoard, LicenseTypeUser } from '../../common';
+import {
+  LicenseTypeBoard,
+  LicenseTypeOrganisation,
+  LicenseTypeUser,
+  LicenseTypeWorkspace,
+} from '../../common';
 import { TrelloContext } from '../trello-provider';
 
 const defaultContext: LicenseContext = {
@@ -19,11 +24,18 @@ export const ContextedLicense = React.createContext(defaultContext);
 const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
   const tContext = useContext(TrelloContext);
 
-  const override = props.overrideLicense=='pro'? true : props.overrideLicense=='free'? false : undefined;
+  let override: boolean | undefined;
+  if (props.overrideLicense === 'pro') {
+    override = true;
+  } else if (props.overrideLicense === 'free') {
+    override = false;
+  } else {
+    override = undefined;
+  }
 
   const [context, setContext] = useState<LicenseContext>({
     loading: true,
-    licensed: override ? override : false,
+    licensed: override || false,
     expired: false,
     errored: false,
     powerupId: props.powerupId,
@@ -35,7 +47,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
     return {
       loading: false,
       expired: result.isRegistered && !result.isLicensed,
-      licensed: override ? override : (result.isRegistered && result.isLicensed),
+      licensed: override || (result.isRegistered && result.isLicensed),
     };
   };
 
@@ -50,7 +62,7 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
           ...newContext,
           loading: false,
           expired: false,
-          licensed: override ? override : true,
+          licensed: override || true,
           inactive: true,
         });
         return;
@@ -78,8 +90,28 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
             newContext = { ...newContext, loading: false, errored: true };
             setContext(newContext);
           });
+      } else if (
+        props.licenseType === LicenseTypeOrganisation
+        || props.licenseType === LicenseTypeWorkspace) {
+        const organisationId = t.getContext().organization;
+        if (organisationId) {
+          newContext.licenseId = organisationId;
+        } else {
+          console.error('Board is not associated with an organisation');
+          newContext = { ...newContext, loading: false, errored: true};
+          setContext(newContext);
+        }
+        props.optroClient.getOrganisationLicenseStatus(newContext.licenseId)
+          .then((result: OptroLicenseResponse) => {
+            newContext = { ...newContext, ...processResults(result) };
+            setContext(newContext);
+          }).catch((error: any) => {
+            console.error('An error occurred while checking the license:', error);
+            newContext = { ...newContext, loading: false, errored: true };
+            setContext(newContext);
+          });
       } else {
-        throw new Error('Non standard license type provided. Use "board" or "user"');
+        throw new Error('Non standard license type provided. Use "board", "user", or "organisation"');
       }
       setContext(newContext);
     } else {

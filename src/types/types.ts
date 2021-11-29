@@ -3,7 +3,7 @@ import { Trello } from './trello';
 
 export type LocaleKey = 'en' | 'fr' | 'de' | 'es';
 
-export type LicenseType = 'board' | 'user';
+export type LicenseType = 'board' | 'user' | 'organisation' | 'workspace';
 
 export interface LicenseContext {
     loading?: boolean;
