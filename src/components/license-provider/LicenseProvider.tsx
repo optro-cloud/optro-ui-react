@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { OptroLicenseResponse } from '@optro/api-client/dist/types';
 import { LicenseContext, LicenseProviderProps, Trello } from '../../types';
-import { LicenseTypeBoard, LicenseTypeOrganisation, LicenseTypeUser } from '../../common';
+import {
+  LicenseTypeBoard,
+  LicenseTypeOrganisation,
+  LicenseTypeUser,
+  LicenseTypeWorkspace,
+} from '../../common';
 import { TrelloContext } from '../trello-provider';
 
 const defaultContext: LicenseContext = {
@@ -85,7 +90,9 @@ const LicenseProvider = (props: LicenseProviderProps): React.ReactElement => {
             newContext = { ...newContext, loading: false, errored: true };
             setContext(newContext);
           });
-      } else if (props.licenseType === LicenseTypeOrganisation) {
+      } else if (
+        props.licenseType === LicenseTypeOrganisation
+        || props.licenseType === LicenseTypeWorkspace) {
         const organisationId = t.getContext().organization;
         if (organisationId) {
           newContext.licenseId = organisationId;
